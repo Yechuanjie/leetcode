@@ -22,4 +22,4 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
   return false;
 }
 
-console.info(containsNearbyDuplicate([1,0,1,1], 1));
+console.info(containsNearbyDuplicate([1,0,1,1], 1)); // true
