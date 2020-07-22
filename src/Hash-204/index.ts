@@ -7,8 +7,8 @@
  * @param {number} n
  * @returns {number}
  *
- *  该方法时间复杂度
- *  O(n * n) = O(n^2)
+ *  该方法时间复杂度 
+ *  O(n * n) = O(n^2) 
  */
 function countPrimes(n: number): number {
   const arr: Array<number> = [];
@@ -34,9 +34,7 @@ function countPrimes(n: number): number {
 
 /**
  *
- * 该方法时间复杂度
- *  O(sqrt(n) * logn) = O(nlogn)
- *
+ * 优化2
  *  */
 function countPrimes2(n: number): number {
   const arr: Array<boolean> = [];
@@ -57,10 +55,7 @@ function countPrimes2(n: number): number {
 }
 
 /**
- *
- * 该方法时间复杂度
- *  O(sqrt(n) * log(logn)) = O(nloglogn)
- *
+ * 优化3
  *  */
 function countPrimes3(n: number): number {
   const arr: Array<boolean> = new Array(n).fill(true);
@@ -79,20 +74,23 @@ function countPrimes3(n: number): number {
 
 /**
  * 优化4：避免最后的filter 使用变量count统计
- * 该方法时间复杂度
- *  O(sqrt(n) * log(logn)) = O(nloglogn)
- *
  *  */
 function countPrimes4(n: number): number {
+  // 初始数组且默认为false，代表不是质数
   const arr: Array<boolean> = new Array(n).fill(false);
-  let count = n > 2 ? 1 : 0;
-  // 只需要遍历到根号n。如果到根号n都没有可整除的因子，那后面也一定没有
+  let count = 0;
+  // 只要大于2 就一定会有2这个质数
+  if (n > 2) count++;
+  // 从3开始，且只需要遍历奇数， 因为大于2的偶数一定不是质数
   for (let i = 3; i < n; i += 2) {
+    // 是质数
     if (!arr[i]) {
-      // i的倍数也不可能是素数，做个标记
-      for (let j = 3; j * i < n; j += 2) {
-        arr[j * i] = true;
+      // 质数的奇数倍一定不是质数 （偶数倍已经在外层循环就干掉了）
+      for (let j = 3; i * j < n; j += 2) {
+        // 标记为质数
+        arr[i * j] = true;
       }
+      // 计数加一
       count++;
     }
   }
