@@ -28,18 +28,14 @@ function subdomainVisits(cpdomains: string[]): string[] {
   const map = new Map();
   for (let i = 0, l = cpdomains.length; i < l; i++) {
     const item = cpdomains[i].split(" ");
-    const baseCount = Number(item[0]);
-    const baseDomain = item[1];
-    const domainChild = baseDomain.split(".");
-    const fatherDomain = domainChild.slice(1).join(".");
-    const subDomainCount = (map.get(baseDomain) || 0) + baseCount;
-    const parentDomainCount = (map.get(fatherDomain) || 0) + baseCount;
-    map.set(baseDomain, subDomainCount);
-    map.set(fatherDomain, parentDomainCount);
-    if (domainChild.length > 2) {
-      const grandfatherDomain = domainChild.slice(2).join(".");
-      const grandfaDomainCount = (map.get(grandfatherDomain) || 0) + baseCount;
-      map.set(grandfatherDomain, grandfaDomainCount);
+    // 把输入转为number
+    const count = Number(item[0]);
+    let domain = item[1];
+    map.set(domain, map.has(domain) ? map.get(domain) + count : count);
+    // 如果当前域名有父级域名 (最多循环两次，常数级别)
+    while (domain.indexOf(".") > -1) {
+      domain = domain.substr(domain.indexOf(".") + 1);
+      map.set(domain, map.has(domain) ? map.get(domain) + count : count);
     }
   }
   const result: string[] = [];
