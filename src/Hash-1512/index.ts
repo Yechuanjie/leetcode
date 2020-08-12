@@ -9,6 +9,9 @@
  * 输入：nums = [1,2,3,1,1,3] 输出：4
  * 解释：有 4 组好数对，分别是 (0,3), (0,4), (3,4), (2,5) ，下标从 0 开始
  * 输入：nums = [1,1,1,1] 输出：6
+ * 
+ * 每个数字出现次数就能得出有多少组好数对
+ * 规则 n * (n - 1) / 2
  */
 function numIdenticalPairs(nums: number[]): number {
   const map = new Map();
@@ -23,4 +26,4 @@ function numIdenticalPairs(nums: number[]): number {
   return count;
 }
 
-console.info(numIdenticalPairs([1, 1, 1, 1, 2]));
+console.info(numIdenticalPairs([1, 1, 1, 1]));
