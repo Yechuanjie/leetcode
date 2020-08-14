@@ -5,6 +5,8 @@
 ```shell
 git clone https://github.com/Yechuanjie/leetcode.git
 
+cd algorithm
+
 yarn install
 ```
 
