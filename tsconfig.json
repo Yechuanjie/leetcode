@@ -11,6 +11,9 @@
     "target": "esnext",
     "noImplicitAny": true,
     "outDir": "dist",
-    "sourceMap": false
-  }
+    "sourceMap": false,
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
