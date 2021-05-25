@@ -6,9 +6,19 @@
 
 // @lc code=start
 function plusOne(digits: number[]): number[] {
-  const continueZreoLength = 0
-  const strArr = (Number(digits.join('')) + 1 + '').split('')
-  return strArr.map(i=>Number(i))
-};
+  for (let i = digits.length - 1; i >= 0; i--) {
+    if (digits[i] < 9) {
+      digits[i]++
+      return digits
+    } else {
+      digits[i] = 0
+    }
+  }
+  digits.unshift(1)
+  return digits
+}
 // @lc code=end
 
+const arr = [9,9]
+const result = plusOne(arr)
+console.info(result)
