@@ -6,13 +6,12 @@
   "configurations": [
     {
       "name": "启动程序",
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "args": [
         "${relativeFile}"
       ],
       "cwd": "${workspaceRoot}",
-      "protocol": "inspector",
       "runtimeArgs": [
         "-r",
         "ts-node/register"
